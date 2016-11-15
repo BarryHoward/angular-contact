@@ -1,0 +1,42 @@
+@import 'bulma';
+
+body{
+	background: grey;
+	padding: 30px;
+	display: flex;
+	justify-content: center;
+}
+
+
+.container {
+	width: 500px;
+	background: white;
+	padding: 30px;
+	margin: 20px;
+}
+
+.error-text {
+	color:red;
+}
+
+.input {
+	border-left: 5px solid red;
+}
+
+.input-pass {
+	border-left: 5px solid black;
+}
+
+.button {
+	width: 180px;
+	height: 80px;
+}
+
+.contact-us{
+	font-weight: bold;
+	font-size: 30pt;
+}
+
+.label {
+	font-size: 25pt;
+}

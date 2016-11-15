@@ -1,0 +1,44 @@
+ <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Cool Project</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+  </head>
+  <body ng-app="app">
+    <div class="container" ng-controller="ContactController">
+      <p class="contact-us">Contact Us</p>
+      <form ng-submit="addContact(formInfo)">
+        <p class="control">
+          <label>Name</label>
+          <input class="input" placeholder="Mr. T" ng-class="class.name" type="text" ng-model="formInfo.name" ng-keyup="validName(formInfo.name)" />
+          <span class="error-text" >{{ error.name }}</span>
+        </p>
+
+        <p class="control">
+          <label>Email</label>
+          <input class="input" placeholder="BABaracus@pityfools.com" ng-class="class.email" type="text" ng-model="formInfo.email" ng-keyup="validEmail(formInfo.email)" />
+          <span class="error-text" >{{ error.email }}</span>
+        </p>
+
+        <p class="control">
+          <label>Website</label>
+          <input class="input" placeholder="http://www.ATeam.org" ng-class="class.website" type="text" ng-model="formInfo.website" ng-keyup="validWebsite(formInfo.website)" />
+          <span class="error-text" >{{ error.website }}</span>
+        </p>
+
+        <p class="control">
+          <label>Message</label>
+          <textarea class="textarea input" placeholder="I ain't gettin in no plane..." ng-class="class.text" ng-model="formInfo.text" ng-keyup="validText(formInfo.text)"></textarea>
+          <span class="error-text" >{{ error.text }}</span>
+        </p>
+
+        <button class="button" ng-class="class.submit">Submit</button>
+
+      </form>
+    </div>
+    <script src="js/bundle.js"></script>
+  </body>
+</html>
