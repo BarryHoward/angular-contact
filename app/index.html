@@ -6,6 +6,7 @@
     <title>My Cool Project</title>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
   </head>
   <body ng-app="app">
     <div class="container" ng-controller="ContactController">
@@ -36,8 +37,33 @@
         </p>
 
         <button class="button" ng-class="class.submit">Submit</button>
-
       </form>
+
+      <div class="contact-list">
+        <p class="list-title">Contact List</p>
+        <ul class="database-contacts">
+          <li ng-repeat="i in contacts">
+            <div class="contact-block">
+              <p class="contact-param"><span class="category">Name:  </span>{{ i.name }}</p>
+              <p class="contact-param"><span class="category">Email:  </span>{{ i.email }}</p>
+              <p class="contact-param"><span class="category">Website:  </span>{{ i.website }}</p>
+              <p class="contact-param"><span class="category">Text:  </span>{{ i.text }}</p>
+              
+              <div class="delete-container">
+                <button class="button is-danger is-outlined" ng-click="delete(i)">
+                  <span class="icon">
+                    <i class="fa fa-times"></i>
+                  </span>
+                  <span>Delete</span>
+                </button>
+              </div>
+
+            </div>
+          </li>
+        </ul>
+      </div>
+
+
     </div>
     <script src="js/bundle.js"></script>
   </body>

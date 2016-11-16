@@ -3,15 +3,20 @@ const CLASS_URL = "https://class-server.herokuapp.com/collections/barry_contact_
 function ContactController($scope, $http){
 
 	function init(){
-		$scope.error = {};
-		$scope.error.name = "Name cannot be left empty!  Fool!"
-		$scope.error.email = "Email cannot be left empty!  Fool!"
-		$scope.error.website = "Website cannot be left empty!  Fool!";
-		$scope.error.text = "Speak up, fool!  Message cannot be left empty!";
-		$scope.formInfo ={};
-		$scope.click = false;
-		$scope.class = {};
-		$scope.class.submit = "is-danger";
+		$http.get(CLASS_URL).then(function(response){
+      		$scope.contacts = response.data;
+	      	console.log($scope.contacts);
+			$scope.error = {};
+			$scope.error.name = "Name cannot be left empty!  Fool!"
+			$scope.error.email = "Email cannot be left empty!  Fool!"
+			$scope.error.website = "Website cannot be left empty!  Fool!";
+			$scope.error.text = "Speak up, fool!  Message cannot be left empty!";
+			$scope.formInfo ={};
+			$scope.click = false;
+			$scope.class = {};
+			$scope.class.submit = "is-danger";
+    	});
+
 	}
 
 	init ();
@@ -31,11 +36,21 @@ function ContactController($scope, $http){
 
 	$scope.addContact = function(form){
 		if ($scope.click){
-			$http.post(CLASS_URL, form).then(function (response) {
-		        console.log(response.data);
-	      	});
-			init();
+			$http.post(CLASS_URL, form).then(function(response){
+				$scope.contacts.push(response.data);
+				console.log(response.data)});
+				init();
 		}
+	};
+
+	$scope.delete = function (contact) {
+		$http.delete(CLASS_URL + "/" + contact._id).then(function (response) {
+			$scope.contacts = $scope.contacts.filter(function(element){
+				return element._id !== contact._id;
+			});
+		});
+
+		init();
 	};
 
 	$scope.validName = function(name){
